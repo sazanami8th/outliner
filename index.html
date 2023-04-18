@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outliner</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+    <header id="header">
+        <h1 class="system_title">
+            <a href="outliner.html"><img src="img/logo.svg" alt="Outliner"></a>
+        </h1>
+        <nav>
+            <ul>
+                <li>情報</li>
+                <li>ヘルプ</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="local_navi">
+        <ul class="side_panel">
+            <li>
+                <button type="button" id="file_button">
+                    <img src="img/file.png" alt="ファイル">
+                </button>
+            </li>
+            <li>
+                <button type="button" id="edit_button">
+                    <img src="img/edit.png" alt="編集">
+                </button>
+            </li>
+        </ul>
+        <ul class="side_panel">
+            <li>
+                <button type="button" id="user_button">
+                    <img src="img/user.png" alt="ユーザー">
+                </button>
+            </li>
+            <li>
+                <button type="button" id="config_button">
+                    <img src="img/gear.png" alt="設定">
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div id="filer" class="side_window">
+        <p>ファイル</p>
+        <div class="button_container">
+            <button type="button" id="file_create_button">
+                <img src="img/create_file.png" alt="新規作成">
+            </button>
+            <button type="button" id="file_open_button">
+                <img src="img/open_file.png" alt="開く">
+            </button>
+            <button type="button" id="file_save_button">
+                <img src=img/save_file.png alt="保存">
+            </button>
+        </div>
+        <input type="file" id="file_open_form" accept=".html">
+    </div>
+
+    <div id="editor" class="side_window">
+        <p>トピック</p>
+        <div class="button_container">
+            <button type="button" id="topic_insert_button">
+                <img src="img/create_topic.png" alt="新規挿入">
+            </button>
+        </div>
+        <p>インデント</p>
+        <div class="button_container">
+            <button type="button" id="indent_increase_button">
+                <img src="img/increase_indent.png" lat="増やす">
+            </button>
+            <button type="button" id="indent_decrease_button">
+                <img src="img/decrease_indent.png" alt="減らす">
+            </button>
+        </div>
+    </div>
+
+    <main id="main_window">
+        <iframe id="doc_frame"></iframe>
+    </main>
+
+    <footer id="footer">
+        <span>モード：</span>
+        <span id="mode"></span>
+    </footer>
+
+    <dialog id="file_create_dialog">
+        <h2>新規作成</h2>
+        <dl>
+            <dt><label for="file_title">ファイル名</label></dt>
+            <dd><input type="text" id="file_title"></dd>
+            <dt><label for="page_title">ページタイトル</label></dt>
+            <dd><input type="text" id="page_title"></dd>
+        </dl>
+        <div>
+            <button type="button" class="decision">決定</button>
+            <button type="button" class="cancel">キャンセル</button>
+        </div>
+    </dialog>
+
+    <!-- JQuery<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
+    <script src="js/event-dispatcher.js" type="text/javascript"></script>
+    <script src="js/outline-file.js" type="text/javascript"></script>
+    <script src="js/doc-frame.js" type="text/javascript"></script>
+    <script src="js/side-view.js" type="text/javascript"></script>
+    <script src="js/whole-view.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+</body>
+</html>

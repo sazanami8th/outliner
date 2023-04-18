@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+html{
+	font-size: 100%;
+	
+	/* 特別な設定 */
+    background-color: #10101A;
+    color: #fff;
+}
+body{
+    margin: 50px;
+    --my_margin_top: 1rem;
+}
+
+/* タイトルの設定 */
+.page_title{
+    font-size: 1.5rem;
+}
+.topic_title{
+    margin: 0;
+    font-size: 1.25rem;
+}
+.topic_title::before{
+	content:"〈 "
+}
+.topic_title::after{
+	content:" 〉"
+}
+
+/* リスト(レベル1)の設定 */
+.list_level1{
+    list-style: none;
+    padding-left: 3rem;
+    text-indent: -1rem;
+}
+.list_level1 > li{
+    margin-top: var(--my_margin_top);
+}
+.list_level1 > li::before{
+	content: "\25e6";
+}
+
+/* リスト(レベル2)の設定 */
+.list_level2{
+    list-style: none;
+    padding-left: 1rem;
+    text-indent: -1em;
+}
+.list_level2 > li{
+    margin-top: var(--my_margin_top);
+}
+.list_level2 > li::before{
+	content: "\30FB";
+}
+
+/* リスト(レベル3)の設定 */
+.list_level3{
+    list-style: none;
+    padding-left: 1rem;
+    text-indent: -1rem;
+}
+.list_level3 > li{
+    margin-top: var(--my_margin_top);
+}
+.list_level3 > li::before{
+	content: "\FE63";
+}
+
+/* コメントの設定 */
+.comment{
+    margin: 0;
+    padding-left: 1rem;
+    font-size: 0.75rem;
+    text-indent: -0.75rem;
+}
+.comment::before{
+    content: "\203B";
+}
+
+/* footerの設定 */
+footer p{
+    text-align: right;
+	font-size: 0.75rem;
+}
