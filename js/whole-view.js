@@ -13,7 +13,7 @@ class WholeView{
         // モード定義
         this.mode = "default";
         this.modeText = document.getElementById("mode");
-        this.modeText.textContent = mode_map.get(this.mode);
+        this.modeText.textContent = WholeView.mode_map.get(this.mode);
 
         // ファイル管理モード
         this.fileButton = document.getElementById("file_button");
@@ -41,6 +41,12 @@ class WholeView{
             docFrame.createNewFile(this.fileTitle.value, this.pageTitle.value);
         };
     }
+
+    static mode_map = new Map([
+        ["default", "プレビュー"],
+        ["filer", "ファイル管理"],
+        ["editor", "編集"]
+    ]);
     
     /**
      * モード切替
@@ -52,15 +58,15 @@ class WholeView{
         if(this.mode == "default"){
             this.openSideWindow(selectedMode);
             this.mode = selectedMode;
-            this.modeText.textContent = mode_map.get(this.mode);
+            this.modeText.textContent = WholeView.mode_map.get(this.mode);
         }else if(this.mode == selectedMode){
             this.closeSideWindow(selectedMode);
             this.mode = "default";
-            this.modeText.textContent = mode_map.get(this.mode);
+            this.modeText.textContent = WholeView.mode_map.get(this.mode);
         }else{
             this.switchSideWindow(this.mode, selectedMode);
             this.mode = selectedMode;
-            this.modeText.textContent = mode_map.get(this.mode);
+            this.modeText.textContent = WholeView.mode_map.get(this.mode);
         }
     }
 
@@ -94,9 +100,3 @@ class WholeView{
         this.mainWindow.style.margin = "50px 0 30px 50px";
     }
 }
-
-const mode_map = new Map([
-    ["default", "プレビュー"],
-    ["filer", "ファイル管理"],
-    ["editor", "編集"]
-]);
