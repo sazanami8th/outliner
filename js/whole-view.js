@@ -42,6 +42,9 @@ class WholeView{
             this.fileCreateDialog.close();
             docFrame.createNewFile(this.fileTitle.value, this.pageTitle.value);
         };
+
+        // メッセージ欄定義
+        this.messageArea = document.getElementById("message");
     }
 
     static mode_map = new Map([

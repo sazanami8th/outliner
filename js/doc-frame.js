@@ -26,8 +26,9 @@ class DocFrame{
     }
 
     saveFile(text){
-        const re = /(?<=<title>).+(?=<\/title>)/;
-        let filename = re.exec(text)[0] + ".html";
+        const re = /(?=<title>).+(?=<\/title>)/;
+        let dummy = re.exec(text)[0];
+        let filename = dummy.replace(/<title>/, "") + ".html";
         this.outlineFile.save(filename, text);
     }
 
