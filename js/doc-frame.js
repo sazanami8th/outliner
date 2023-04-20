@@ -169,7 +169,7 @@ class DocFrame{
         let newTopic = document.createElement("section");
         newTopic.className = "topic";
         let newTopicTitle = document.createElement("h2");
-        newTopicTitle.className = "topic_title"
+        newTopicTitle.className = "topic_title";
         newTopic.appendChild(newTopicTitle);
 
         // 現在のキャレット位置のテキストを含むトピックを特定

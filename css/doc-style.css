@@ -1,15 +1,14 @@
 @charset "UTF-8";
 
-html{
-	font-size: 100%;
-	
-	/* 特別な設定 */
-    background-color: #10101A;
-    color: #fff;
-}
 body{
     margin: 50px;
     --my_margin_top: 1rem;
+    font-size: 100%;
+    font-family: "Arial", "メイリオ", sans-serif;
+
+    /* 特別な設定 */
+    background-color: #10101A;
+    color: #fff;
 }
 
 /* タイトルの設定 */
