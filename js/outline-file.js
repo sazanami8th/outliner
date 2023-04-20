@@ -59,7 +59,7 @@ class OutlineFile extends EventDispatcher{
         if(filename === ""){
             throw new Error("ファイル名が設定されていません");
         }
-        let blob = new Blob([text], {type: "text/plain"});
+        let blob = new Blob([text], {type: "text/html"});
         let aTag = document.createElement("a");
         aTag.href = URL.createObjectURL(blob);
         aTag.target = "_blank";
