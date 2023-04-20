@@ -2,6 +2,9 @@ import {FilerView, EditorView} from "./side-view.js";
 
 class WholeView{
     constructor(docFrame){
+        // メッセージ欄定義
+        this.messageArea = document.getElementById("message");
+        
         // メインウィンドウ定義
         this.mainWindow = document.getElementById("main_window");
         this.docFrame = docFrame;
@@ -34,17 +37,18 @@ class WholeView{
         this.fileTitle = document.getElementById("file_title");
         this.pageTitle = document.getElementById("page_title");
         document.querySelector("#file_create_dialog .cancel").onclick = () => {
-            this.fileTitle.value = "";
-            this.pageTitle.value = "";
             this.fileCreateDialog.close();
         };
         document.querySelector("#file_create_dialog .decision").onclick = () => {
+            if(this.fileTitle.value === ""){
+                this.messageArea.textContent = "ファイル名は必ず設定してください";
+                return;
+            }
+            
+            this.messageArea.textContent = "正常に動作しています";
             this.fileCreateDialog.close();
             docFrame.createNewFile(this.fileTitle.value, this.pageTitle.value);
         };
-
-        // メッセージ欄定義
-        this.messageArea = document.getElementById("message");
     }
 
     static mode_map = new Map([
