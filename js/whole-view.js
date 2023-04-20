@@ -1,3 +1,5 @@
+import {FilerView, EditorView} from "./side-view.js";
+
 class WholeView{
     constructor(docFrame){
         // メインウィンドウ定義
@@ -100,3 +102,5 @@ class WholeView{
         this.mainWindow.style.margin = "50px 0 30px 50px";
     }
 }
+
+export default WholeView;

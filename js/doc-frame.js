@@ -314,3 +314,5 @@ class DocFrame{
         }
     }
 }
+
+export default DocFrame;

@@ -1,3 +1,5 @@
+import EventDispatcher from "./event-dispatcher.js";
+
 class OutlineFile extends EventDispatcher{
     constructor(){
         super();
@@ -79,3 +81,5 @@ class OutlineFile extends EventDispatcher{
         return text;
     }
 }
+
+export default OutlineFile;

@@ -98,3 +98,5 @@ class EditorView extends SideView{
         this.docFrame.toggleContentEditable();
     }
 }
+
+export {SideView, FilerView, EditorView};
