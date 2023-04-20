@@ -168,6 +168,9 @@ li{
 #footer span:first-child{
     margin-left: 15px;
 }
+#message{
+    margin-left: 15px;
+}
 
 /* 新規作成ダイアログの設定 */
 #file_create_dialog{

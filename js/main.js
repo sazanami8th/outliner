@@ -11,5 +11,11 @@ class App{
 }
 
 window.addEventListener("load", function(){
-    let app = new App();
+    let messageArea = document.getElementById("message");
+    try{
+        let app = new App();
+        messageArea.textContent = "正常に動作しています"
+    }catch(exception){
+        messageArea.textContent = exception;
+    }
 });
