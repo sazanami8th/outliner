@@ -2,11 +2,10 @@
 
 body{
     margin: 50px;
-    --my_margin_top: 1rem;
     font-size: 100%;
     font-family: "Arial", "メイリオ", sans-serif;
 
-    /* 特別な設定 */
+    /* 配色の設定 */
     background-color: #10101A;
     color: #fff;
 }
@@ -26,43 +25,17 @@ body{
 	content:" 〉"
 }
 
+/* リスト全体の設定 */
+ul{
+    padding-left: 1rem;
+}
+li{
+    margin-top: 1rem;
+}
+
 /* リスト(レベル1)の設定 */
 .list_level1{
-    list-style: none;
     padding-left: 3rem;
-    text-indent: -1rem;
-}
-.list_level1 > li{
-    margin-top: var(--my_margin_top);
-}
-.list_level1 > li::before{
-	content: "\25e6";
-}
-
-/* リスト(レベル2)の設定 */
-.list_level2{
-    list-style: none;
-    padding-left: 1rem;
-    text-indent: -1em;
-}
-.list_level2 > li{
-    margin-top: var(--my_margin_top);
-}
-.list_level2 > li::before{
-	content: "\30FB";
-}
-
-/* リスト(レベル3)の設定 */
-.list_level3{
-    list-style: none;
-    padding-left: 1rem;
-    text-indent: -1rem;
-}
-.list_level3 > li{
-    margin-top: var(--my_margin_top);
-}
-.list_level3 > li::before{
-	content: "\FE63";
 }
 
 /* コメントの設定 */

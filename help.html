@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outliner ヘルプ</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/help-style.css" type="text/css">
+</head>
+<body>
+    <header id="header">
+        <h1 class="system_title">
+            <a href="index.html"><img src="img/logo.png" alt="Outliner"></a>
+        </h1>
+        <nav>
+            <ul>
+                <li>情報</li>
+                <li><a href="help.html">ヘルプ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main">
+        <div class="container">
+            <p>最終更新: 2023/4/25</p>
+            <h2>Outliner ヘルプ</h2>
+
+            <nav>
+                <ul>
+                    <p>目次</p>
+                    <li><a href="#create_new_document">文書の新規作成</a></li>
+                    <li><a href="#open_file">既存の文書を開く</a></li>
+                    <li><a href="#save_file">文書を保存(ダウンロード)する</a></li>
+                    <li><a href="#edit_document">文書を編集する</a></li>
+                </ul>
+            </nav>
+            
+            <section id="create_new_document" class="content">
+                <h3>文書の新規作成</h3>
+                <ol>
+                    <li>
+                        <p>ファイル管理ボタンをクリックします。</p>
+                    </li>
+                    <li>
+                        <p>サイドビューが表示されたら、新規作成ボタンをクリックします。</p>
+                    </li>
+                    <li>
+                        <p>新規作成ダイアログが表示されたら、ファイル名とページ名を入力します。</p>
+                        <dl>
+                            <dt>ファイル名</dt>
+                            <dd>HTMLファイルとして保存する際のファイル名になります。</dd>
+                            <dt>ページ名</dt>
+                            <dd>ページの上部に表示されるタイトルです。</dd>
+                        </dl>
+                        <p>ファイル名とページ名は現状この画面以外では設定できないので注意してください。</p>
+                        <p>(後から編集する場合はHTMLファイルを直接書き換える必要があります)</p>
+                    </li>
+                    <li>
+                        <p>入力が終わったら「決定」をクリックします。</p>
+                    </li>
+                    <li>
+                        <p>新しい文書がメインビューに表示されます。</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="open_file" class="content">
+                <h3>既存の文書を開く</h3>
+                <ol>
+                    <li>
+                        <p>ファイル管理ボタンをクリックします。</p>
+                    </li>
+                    <li>
+                        <p>サイドビューが表示されたら、ファイルを開くボタンをクリックします。</p>
+                    </li>
+                    <li>
+                        <p>ファイル選択ダイアログが表示されたら、開きたいファイルを選択します。</p>
+                    </li>
+                    <li>
+                        <p>「開く」をクリックします。</p>
+                    </li>
+                    <li>
+                        <p>メインビューに開いた文書の内容が表示されます。</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="save_file" class="content">
+                <h3>文書を保存(ダウンロード)する</h3>
+                <ol>
+                    <li>
+                        <p>ファイル管理ボタンをクリックします。</p>
+                    </li>
+                    <li>
+                        <p>サイドビューが表示されたら、保存ボタンをクリックします。</p>
+                    </li>
+                    <li>
+                        <p>ファイルのダウンロードダイアログが表示されたら「保存」をクリックします。</p>
+                    </li>
+                    <li>
+                        <p>ダウンロードフォルダにhtml形式で文書が保存されます。</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="edit_document" class="content">
+                <h3>文書を編集する</h3>
+                <ol>
+                    <li>
+                        <p>編集したい文書をメインビューに表示した状態で編集ボタンをクリックします。</p>
+                    </li>
+                    <li>
+                        <p>メインビューに表示されている文章をクリックすると編集できるようになっています。</p>
+                        <p>サイドビューのボタンも必要に応じて使用してください。</p>
+                        <dl>
+                            <dt>新規トピックボタン</dt>
+                            <dd>選択中のトピックの次にトピックを挿入します。</dd>
+                            <dt>インデントを増やすボタン</dt>
+                            <dd>
+                                <p>選択中の行についてインデントをひとつ増やします。</p>
+                                <p>また、その行は前の行の子要素となります。</p>
+                                <p>インデントは前の行より二つ以上増やすことはできません。</p>
+                            </dd>
+                            <dt>インデントを減らすボタン</dt>
+                            <dd>
+                                <p>選択中の行についてインデントをひとつ減らします。</p>
+                                <p>また、その行は親要素の外に出されます。</p>
+                            </dd>
+                        </dl>
+                    </li>
+                </ol>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
