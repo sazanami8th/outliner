@@ -11,6 +11,9 @@ li{
 a{
     text-decoration: none;
 }
+a:link, a:visited{
+    color: rgb(204, 204, 204);
+}
 
 /* headerの設定 */
 #header{

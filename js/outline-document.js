@@ -1,6 +1,6 @@
 import EventDispatcher from "./event-dispatcher.js";
 
-class OutlineFile extends EventDispatcher{
+class OutlineDocument extends EventDispatcher{
     constructor(){
         super();
     }
@@ -85,4 +85,4 @@ class OutlineFile extends EventDispatcher{
     }
 }
 
-export default OutlineFile;
+export default OutlineDocument;
