@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUTLINER ヘルプ</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/help-style.css" type="text/css">
+</head>
+
+<body>
+    <header id="header">
+        <h1 class="system_title">
+            <a href="index.html"><img src="img/logo.png" alt="OUTLINER"></a>
+        </h1>
+        <nav>
+            <ul>
+                <li>情報</li>
+                <li><a href="help.html">ヘルプ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main id="main">
+            <p>最終更新: 2023/4/24</p>
+            <h2>OUTLINER ヘルプ</h2>
+            <p>OUTLINERは思考整理のためのアウトライン作成アプリです。</p>
+            <p>Webブラウザ上で動作しますが、入力内容はご使用の端末内にのみ保持されます。</p>
+            <p>使用にあたっては<a href="#caution">使用上の注意</a>もご覧ください。</p>
+
+            <nav class="index">
+                <ul>
+                    <p>目次</p>
+                    <li><a href="#window_description">画面の説明</a></li>
+                    <li><a href="#create_new_document">文書の新規作成</a></li>
+                    <li><a href="#open_file">既存の文書を開く</a></li>
+                    <li><a href="#save_file">文書を保存(ダウンロード)する</a></li>
+                    <li><a href="#edit_document">文書を編集する</a></li>
+                    <li><a href="#caution">使用上の注意</a></li>
+                </ul>
+            </nav>
+
+            <section id="window_description" class="content">
+                <h3>画面の説明</h3>
+                <p>OUTLINERは以下の要素で構成されています。</p>
+                <img src="img/window_description.png" alt="画面の説明">
+                <dl>
+                    <dt>ヘッダー</dt>
+                    <dd>OUTLINERの基本情報にアクセスするためのエリアです。</dd>
+                    <dt>サイドパネル</dt>
+                    <dd>サイドウィンドウの切り替えを行うためのパネルです。</dd>
+                    <dt>サイドウィンドウ</dt>
+                    <dd>各種機能を呼び出すためのウィンドウです。</dd>
+                    <dt>メインウィンドウ</dt>
+                    <dd>編集中の文書が表示されるウィンドウです。</dd>
+                    <dt>フッター</dt>
+                    <dd>各種メッセージが表示されるエリアです。</dd>
+                </dl>
+            </section>
+            
+            <section id="create_new_document" class="content">
+                <h3>文書の新規作成</h3>
+                <ol>
+                    <li>
+                        <p>ファイル管理ボタンをクリックします。</p>
+                        <img src="img/select_filer.png" alt="ファイル管理ボタンのクリック">
+                    </li>
+                    <li>
+                        <p>サイドウィンドウが表示されたら、新規作成ボタンをクリックします。</p>
+                        <img src="img/select_create_new_document.png" alt="新規作成ボタンのクリック">
+                    </li>
+                    <li>
+                        <p>新規作成ダイアログが表示されたら、ファイル名とページ名を入力します。</p>
+                        <img src="img/enter_document_title.png" alt="タイトル入力">
+                        <dl>
+                            <dt>ファイル名</dt>
+                            <dd>HTMLファイルとして保存する際のファイル名になります。</dd>
+                            <dt>ページ名</dt>
+                            <dd>ページの上部に表示されるタイトルです。</dd>
+                        </dl>
+                        <p>ファイル名とページ名は現状この画面以外では設定できないので注意してください。</p>
+                        <p>(後から編集する場合はHTMLファイルを直接書き換える必要があります)</p>
+                    </li>
+                    <li>
+                        <p>入力が終わったら「決定」をクリックします。</p>
+                    </li>
+                    <li>
+                        <p>新しい文書がメインウィンドウに表示されます。</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="open_file" class="content">
+                <h3>既存の文書を開く</h3>
+                <ol>
+                    <li>
+                        <p>ファイル管理ボタンをクリックします。</p>
+                        <img src="img/select_filer.png" alt="ファイル管理ボタンのクリック">
+                    </li>
+                    <li>
+                        <p>サイドウィンドウが表示されたら、ファイルを開くボタンをクリックします。</p>
+                        <img src="img/select_open_file.png" alt="ファイルを開くボタンのクリック">
+
+                    </li>
+                    <li>
+                        <p>ファイル選択ダイアログが表示されたら、開きたいファイルを選択します。</p>
+                    </li>
+                    <li>
+                        <p>「開く」をクリックします。</p>
+                    </li>
+                    <li>
+                        <p>メインウィンドウに開いた文書の内容が表示されます。</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="save_file" class="content">
+                <h3>文書を保存(ダウンロード)する</h3>
+                <ol>
+                    <li>
+                        <p>ファイル管理ボタンをクリックします。</p>
+                        <img src="img/select_filer.png" alt="ファイル管理ボタンのクリック">
+                    </li>
+                    <li>
+                        <p>サイドウィンドウが表示されたら、保存ボタンをクリックします。</p>
+                        <img src="img/select_save_file.png" alt="保存ボタンのクリック">
+                    </li>
+                    <li>
+                        <p>ファイルのダウンロードダイアログが表示されたら「保存」をクリックします。</p>
+                    </li>
+                    <li>
+                        <p>ダウンロードフォルダにhtml形式で文書が保存されます。</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="edit_document" class="content">
+                <h3>文書を編集する</h3>
+                <ol>
+                    <li>
+                        <p>編集したい文書をメインウィンドウに表示した状態で編集ボタンをクリックします。</p>
+                        <img src="img/select_editor.png" alt="編集ボタンのクリック">
+                    </li>
+                    <li>
+                        <p>メインウィンドウに表示されている文章をクリックすると編集できるようになっています。</p>
+                        <p>サイドウィンドウのボタンも必要に応じて使用してください。</p>
+                        <img src="img/editor_description.png" alt="編集ウィンドウの説明">
+                        <dl>
+                            <dt>① 新規トピック</dt>
+                            <dd>選択中のトピックの次にトピックを挿入します。</dd>
+                            <dt>② インデントを増やす</dt>
+                            <dd>選択中の行についてインデントをひとつ増やします。<br>
+                                また、その行は前の行の子要素となります。<br>
+                                インデントは前の行より二つ以上増やすことはできません。
+                            </dd>
+                            <dt>③ インデントを減らす</dt>
+                            <dd>選択中の行についてインデントをひとつ減らします。<br>
+                                また、その行は親要素の外に出されます。
+                            </dd>
+                        </dl>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="caution" class="content">
+                <h3>使用上の注意</h3>
+                <ul>
+                    <li>基本的に使用は自己責任でお願いします。本アプリによって生じたいかなる損害も作者は責任を負いかねます。</li>
+                    <li>既知のものも含め、バグが多数あります。今後のアップデートにて可能な限り修正していきます。</li>
+                    <li>アプリの性質上、文書のリアルタイム保存は行われていません。再読み込み等を行いますと編集中の内容が消えてしまうのでご注意ください。</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

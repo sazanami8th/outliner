@@ -1,9 +1,9 @@
-class DocFrame{
-    constructor(outlineFile){
+class DocumentFrame{
+    constructor(outlineDocument){
         this.frame = document.getElementById("doc_frame");
 
-        this.outlineFile = outlineFile;
-        this.outlineFile.addEventListener("outputText", (event) => {
+        this.outlineDocument = outlineDocument;
+        this.outlineDocument.addEventListener("outputText", (event) => {
             this.updateDocFrame(event.task);
         });
     }
@@ -14,7 +14,7 @@ class DocFrame{
      * @param {string} pageTitle ページタイトル
      */
     createNewFile(fileTitle, pageTitle){
-        this.outlineFile.create(fileTitle, pageTitle);
+        this.outlineDocument.create(fileTitle, pageTitle);
     }
 
     /**
@@ -22,14 +22,14 @@ class DocFrame{
      * @param {File} file 
      */
     loadFile(file){
-        this.outlineFile.load(file);
+        this.outlineDocument.load(file);
     }
 
     saveFile(text){
         const re = /(?=<title>).+(?=<\/title>)/;
         let dummy = re.exec(text)[0];
         let filename = dummy.replace(/<title>/, "") + ".html";
-        this.outlineFile.save(filename, text);
+        this.outlineDocument.save(filename, text);
     }
 
     /**
@@ -49,7 +49,7 @@ class DocFrame{
         // 整形がめんどくさかったので実装は未完成
         let targetDoc = this.frame.contentWindow.document;
         let text = targetDoc.documentElement.outerHTML;
-        return this.outlineFile.shapeHtml(text);
+        return this.outlineDocument.shapeHtml(text);
     }
 
     /**
@@ -316,4 +316,4 @@ class DocFrame{
     }
 }
 
-export default DocFrame;
+export default DocumentFrame;
