@@ -65,13 +65,38 @@ class DocumentFrame{
         if(currentState != "true"){
             targetArea.contentEditable = true;
             targetArea.addEventListener("keydown", (event) => {
-                this.checkKey(event);
+                this.executeKeyEvent(event);
+            }, false);
+            targetArea.addEventListener("keyup", (event) => {
+                this.deleteUnnecessaryBr(event);
             }, false);
         }else{
             targetArea.contentEditable = false;
             targetArea.removeEventListener("keydown", (event) => {
-                this.checkKey(event);
+                this.executeKeyEvent(event);
             }, false);
+            targetArea.removeEventListener("keyup", (event) => {
+                this.deleteUnnecessaryBr(event);
+            }, false);
+        }
+    }
+
+    deleteUnnecessaryBr(event){
+        let currentElement = this.getTargetElement();
+        if(currentElement === null){
+            return;
+        }
+        if(currentElement.tagName.toLowerCase() !== "li"){
+            return;
+        }
+        if(currentElement.textContent !== ""){
+            let children = currentElement.children;
+            for(let i = 0; i < children.length; i++){
+                if(children[i].tagName.toLowerCase() === "br"){
+                    currentElement.removeChild(children[i]);
+                    i = i - 1;
+                }
+            }
         }
     }
 
@@ -79,7 +104,7 @@ class DocumentFrame{
      * キー入力によるインデント変更等を行う
      * @param {Event} event イベント
      */
-    checkKey(event){
+    executeKeyEvent(event){
         if(event.key === "Tab"){
             // デフォルトの動作を防ぐ
             event.preventDefault();
