@@ -19,34 +19,40 @@ class FilerView extends SideView{
 
         // ファイル新規作成
         this.fileCreateButton = document.getElementById("file_create_button");
-        this.fileCreateButton.onclick = () => {
+        this.fileCreateButton.addEventListener("click", () => {
             document.getElementById("file_create_dialog").show();
-        };
+        });
 
         // ファイル読込
         this.fileOpenButton = document.getElementById("file_open_button");
         this.fileOpenForm = document.getElementById("file_open_form");
-        this.fileOpenButton.onclick = () =>{
+        this.fileOpenButton.addEventListener("click", () =>{
             this.fileOpenForm.click();
-        };
-        this.fileOpenForm.onchange = () => {
+        });
+        this.fileOpenForm.addEventListener("change", () => {
             let fileList = this.fileOpenForm.files;
             if(fileList.length == 0){
                 return;
             }
             docFrame.loadFile(fileList[0]);
-        };
+        });
 
-        // ファイル保存(ダウンロード？ 未完成)
+        // ファイル保存
         this.fileSaveButton = document.getElementById("file_save_button");
-        this.fileSaveButton.onclick = () => {
+        this.fileSaveButton.addEventListener("click", () => {
             let text = docFrame.getShapedDoc();
 
             // iframeのsrcdocに変更を反映
             docFrame.updateDocFrame(text);
 
             docFrame.saveFile(text);
-        };
+        });
+
+        // ファイルの印刷
+        this.filePrintButton = document.getElementById("file_print_button");
+        this.filePrintButton.addEventListener("click", () => {
+            docFrame.printFile();
+        });
     }
 }
 
@@ -56,36 +62,36 @@ class EditorView extends SideView{
 
         // トピックを挿入
         this.topicInsertButton = document.getElementById("topic_insert_button");
-        this.topicInsertButton.onclick = () => {
+        this.topicInsertButton.addEventListener("click", () => {
             try{
                 // フォーカスがボタンに移ってしまう
                 docFrame.insertTopic();
             }catch(exception){
                 console.log(exception);
             }
-        };
+        });
 
         // インデントを増やす
         this.indentIncreaseButton = document.getElementById("indent_increase_button");
-        this.indentIncreaseButton.onclick = () => {
+        this.indentIncreaseButton.addEventListener("click", () => {
             try{
                 // フォーカスがボタンに移ってしまう
                 docFrame.increaseIndent();
             }catch(exception){
                 console.log(exception);
             }
-        };
+        });
 
         // インデントを減らす
         this.indentDecreaseButton = document.getElementById("indent_decrease_button");
-        this.indentDecreaseButton.onclick = () => {
+        this.indentDecreaseButton.addEventListener("click", () => {
             try{
                 // フォーカスがボタンに移ってしまう
                 docFrame.decreaseIndent();
             }catch(exception){
                 console.log(exception);
             }
-        };
+        });
     }
 
     activate(){
