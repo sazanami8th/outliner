@@ -32,6 +32,10 @@ class DocumentFrame{
         this.outlineDocument.save(filename, text);
     }
 
+    printFile(){
+        this.frame.contentWindow.print();
+    }
+
     /**
      * iframeのsrcdocを書き換える
      * @param {string} value htmlコード

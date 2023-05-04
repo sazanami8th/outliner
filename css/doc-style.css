@@ -54,3 +54,11 @@ footer p{
     text-align: right;
 	font-size: 0.75rem;
 }
+
+/* 印刷用設定 */
+@media print{
+    body{
+        background-color: #fff;
+        color: #000
+    }
+}
