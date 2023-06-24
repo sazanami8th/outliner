@@ -105,4 +105,42 @@ class EditorView extends SideView{
     }
 }
 
-export {SideView, FilerView, EditorView};
+class ArrangerView extends SideView{
+    constructor(docFrame){
+        super("arranger", docFrame);
+
+        // 上へ移動
+        this.lineMoveUpButton = document.getElementById("line_move_up_button");
+        this.lineMoveUpButton.addEventListener("click", () => {
+            try{
+                // フォーカスがボタンに移ってしまう
+                docFrame.moveUpLine();
+            }catch(exception){
+                console.log(exception);
+            }
+        });
+
+        // 下へ移動
+        this.lineMoveDownButton = document.getElementById("line_move_down_button");
+        this.lineMoveDownButton.addEventListener("click", () => {
+            try{
+                // フォーカスがボタンに移ってしまう
+                docFrame.moveDownLine();
+            }catch(exception){
+                console.log(exception);
+            }
+        });
+    }
+
+    activate(){
+        super.activate();
+        this.docFrame.toggleListDraggable();
+    }
+
+    inactivate(){
+        super.inactivate();
+        this.docFrame.toggleListDraggable();
+    }
+}
+
+export {SideView, FilerView, EditorView, ArrangerView};

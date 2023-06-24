@@ -1,4 +1,4 @@
-import {FilerView, EditorView} from "./side-view.js";
+import {FilerView, EditorView, ArrangerView} from "./side-view.js";
 
 class WholeView{
     constructor(docFrame){
@@ -12,7 +12,8 @@ class WholeView{
         // サイドウィンドウ定義
         this.sideWindow = new Map([
             ["filer", new FilerView(docFrame)],
-            ["editor", new EditorView(docFrame)]
+            ["editor", new EditorView(docFrame)],
+            ["arranger", new ArrangerView(docFrame)]
         ]);
 
         // モード定義
@@ -22,15 +23,21 @@ class WholeView{
 
         // ファイル管理モード
         this.fileButton = document.getElementById("file_button");
-        this.fileButton.onclick = () => {
+        this.fileButton.addEventListener("click", () => {
             this.changeMode("filer");
-        };
+        });
 
         // 編集モード
         this.editButton = document.getElementById("edit_button");
-        this.editButton.onclick = () => {
+        this.editButton.addEventListener("click", () => {
             this.changeMode("editor");
-        };
+        });
+
+        // 整理モード
+        this.arrangeButton = document.getElementById("arrange_button");
+        this.arrangeButton.addEventListener("click", () => {
+            this.changeMode("arranger");
+        });
 
         // ダイアログウィンドウ定義
         this.fileCreateDialog = document.getElementById("file_create_dialog");
@@ -54,7 +61,8 @@ class WholeView{
     static mode_map = new Map([
         ["default", "プレビュー"],
         ["filer", "ファイル管理"],
-        ["editor", "編集"]
+        ["editor", "編集"],
+        ["arranger", "整理"]
     ]);
     
     /**
