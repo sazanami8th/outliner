@@ -36,6 +36,11 @@
                     <img src="img/edit.png" alt="編集">
                 </button>
             </li>
+            <li>
+                <button type="button" id="arrange_button">
+                    <img src="img/arrange.png" alt="整理">
+                </button>
+            </li>
         </ul>
         <ul class="side_panel">
             <li>
@@ -88,6 +93,18 @@
         </div>
     </div>
 
+    <div id="arranger" class="side_window">
+        <p>リスト移動</p>
+        <div class="button_container">
+            <button type="button" id="line_move_up_button">
+                <img src="img/move_up_line.png" alt="上へ移動">
+            </button>
+            <button type="button" id="line_move_down_button">
+                <img src="img/move_down_line.png" alt="下へ移動">
+            </button>
+        </div>
+    </div>
+
     <main id="main_window">
         <iframe id="doc_frame"></iframe>
     </main>
@@ -112,7 +129,6 @@
         </div>
     </dialog>
 
-    <!-- JQuery<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
     <script type="module" src="js/event-dispatcher.js" type="text/javascript"></script>
     <script type="module" src="js/outline-document.js" type="text/javascript"></script>
     <script type="module" src="js/document-frame.js" type="text/javascript"></script>

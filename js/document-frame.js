@@ -65,42 +65,16 @@ class DocumentFrame{
             return;
         }
         
-        let currentState = targetArea.contentEditable;
-        if(currentState != "true"){
+        let isContentEditable = targetArea.contentEditable;
+        
+        if(isContentEditable != "true"){
             targetArea.contentEditable = true;
-            targetArea.addEventListener("keydown", (event) => {
-                this.executeKeyEvent(event);
-            }, false);
-            targetArea.addEventListener("keyup", (event) => {
-                this.deleteUnnecessaryBr(event);
-            }, false);
+            targetArea.addEventListener("keydown", this.handleExecuteKeyEvent, false);
+            targetArea.addEventListener("keyup", this.handleDeleteUnnecessaryBr, false);
         }else{
-            targetArea.contentEditable = false;
-            targetArea.removeEventListener("keydown", (event) => {
-                this.executeKeyEvent(event);
-            }, false);
-            targetArea.removeEventListener("keyup", (event) => {
-                this.deleteUnnecessaryBr(event);
-            }, false);
-        }
-    }
-
-    deleteUnnecessaryBr(event){
-        let currentElement = this.getTargetElement();
-        if(currentElement === null){
-            return;
-        }
-        if(currentElement.tagName.toLowerCase() !== "li"){
-            return;
-        }
-        if(currentElement.textContent !== ""){
-            let children = currentElement.children;
-            for(let i = 0; i < children.length; i++){
-                if(children[i].tagName.toLowerCase() === "br"){
-                    currentElement.removeChild(children[i]);
-                    i = i - 1;
-                }
-            }
+            targetArea.contentEditable = "inherit";
+            targetArea.removeEventListener("keydown", this.handleExecuteKeyEvent, false);
+            targetArea.removeEventListener("keyup", this.handleDeleteUnnecessaryBr, false);
         }
     }
 
@@ -108,7 +82,7 @@ class DocumentFrame{
      * キー入力によるインデント変更等を行う
      * @param {Event} event イベント
      */
-    executeKeyEvent(event){
+    handleExecuteKeyEvent = (event) =>{
         if(event.key === "Tab"){
             // デフォルトの動作を防ぐ
             event.preventDefault();
@@ -142,6 +116,7 @@ class DocumentFrame{
             selection.removeAllRanges();
             selection.addRange(range);
         }
+        
         if(event.key === "Enter"){
             // デフォルトの動作を防ぐ
             event.preventDefault();
@@ -161,7 +136,122 @@ class DocumentFrame{
             selection.removeAllRanges();
             selection.addRange(range);
         }
+    };
+
+    handleDeleteUnnecessaryBr = (event) => {
+        let currentElement = this.getTargetElement();
+        if(currentElement === null){
+            return;
+        }
+        if(currentElement.tagName.toLowerCase() !== "li"){
+            return;
+        }
+
+        if(DocumentFrame.hasText(currentElement)){
+            let children = currentElement.children;
+            for(let i = 0; i < children.length; i++){
+                if(children[i].tagName.toLowerCase() === "br"){
+                    currentElement.removeChild(children[i]);
+                    i = i - 1;
+                }
+            }
+        }
+    };
+
+    static hasText(element){
+        for(let i = 0; i < element.children.length; i++){
+            if(element.children[i].nodeType === 3 && element.children[i].textContent !== ""){
+                return true;
+            }
+        }
+        return false;
     }
+
+    /**
+     * iframeで開いているファイルのリストのドラッグ・ドロップ設定を切り替える
+     */
+    toggleListDraggable(){
+        let targetArea = this.frame.contentWindow.document.querySelector("main");
+        if(targetArea == null){
+            return;
+        }
+        
+        let isDraggable = targetArea.querySelector("li").draggable;
+        if(!isDraggable){
+            targetArea.querySelectorAll("li").forEach(element => {
+                element.draggable = true;
+
+                element.addEventListener("dragstart", this.handleDragStart, false);
+                element.addEventListener("dragover", this.handleDragOver, false);
+                element.addEventListener("dragleave", this.handleDragLeave, false);
+                element.addEventListener("drop", this.handleDrop, false);
+            });
+        }else{
+            targetArea.querySelectorAll("li").forEach(element => {
+                element.removeAttribute("draggable");
+                
+                let dragTargetLine = this.frame.contentWindow.document.getElementById("drag_target_line")
+                if(dragTargetLine != null){
+                    dragTargetLine.removeAttribute("id");
+                }
+                
+                element.removeEventListener("dragstart", this.handleDragStart, false);
+                element.removeEventListener("dragover", this.handleDragOver, false);
+                element.removeEventListener("dragleave", this.handleDragLeave, false);
+                element.removeEventListener("drop", this.handleDrop, false);
+            });
+        }
+    }
+
+    handleDragStart = (event) => {
+        let dragTargetLine = this.frame.contentWindow.document.getElementById("drag_target_line")
+        if(dragTargetLine != null){
+            dragTargetLine.removeAttribute("id");
+        }
+
+        event.target.id = "drag_target_line";
+        event.dataTransfer.setData("text/plain", event.target.id);
+    };
+
+    handleDragOver = (event) => {
+        event.preventDefault();
+        let rect = event.target.getBoundingClientRect();
+		if((event.clientY - rect.top) < (event.target.clientHeight / 2)){
+			//マウスカーソルの位置が要素の半分より上
+			event.target.style.borderTop = "1px solid white";
+			event.target.style.borderBottom = "";
+		}else{
+			//マウスカーソルの位置が要素の半分より下
+			event.target.style.borderTop = "";
+			event.target.style.borderBottom = "1px solid white";
+        }
+    };
+
+    handleDragLeave = (event) => {
+        event.target.removeAttribute("style");
+    };
+
+    handleDrop = (event) => {
+        event.preventDefault();
+
+		let id = event.dataTransfer.getData("text/plain");
+		let element = this.frame.contentWindow.document.getElementById(id);
+
+		let rect = event.target.getBoundingClientRect();
+		if((event.clientY - rect.top) < (event.target.clientHeight / 2)){
+			//マウスカーソルの位置が要素の半分より上
+			event.target.parentNode.insertBefore(element, event.target);
+		}else{
+			//マウスカーソルの位置が要素の半分より下
+			event.target.parentNode.insertBefore(element, event.target.nextSibling);
+		}
+
+        event.target.removeAttribute("style");
+
+        if(element.id != null){
+            element.removeAttribute("id");
+        }
+    };
 
     /**
      * カーソル位置にあるノードを含む最小単位の要素を取得
@@ -301,8 +391,16 @@ class DocumentFrame{
             targetElement.previousElementSibling.appendChild(newList);
             newList.appendChild(targetElement);
         }else{
-            // 前のliの子要素の末尾に挿入する
-            targetElement.previousElementSibling.children[0].appendChild(targetElement);
+            let firstChild = targetElement.previousElementSibling.children[0];
+            if(firstChild.tagName.toLowerCase() === "br"){
+                let newList = document.createElement("ul");
+                newList.className = this.generateNewListLevel(parent, "incremental");
+                targetElement.previousElementSibling.appendChild(newList);
+                newList.appendChild(targetElement);
+            }else{
+                // 前のliの子要素の末尾に挿入する
+                firstChild.appendChild(targetElement);
+            }
         }
 
         // 子要素は一つずつリストレベルを上げる
@@ -342,6 +440,14 @@ class DocumentFrame{
                 targetElement.children[i].className = this.generateNewListLevel(targetElement.children[i], "decremental");
             }
         }
+    }
+
+    moveUpLine(){
+        // クリックした要素を上へ移動
+    }
+
+    moveDownLine(){
+        // クリックした要素を下へ移動
     }
 }
 
