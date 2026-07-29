@@ -6,8 +6,8 @@ body{
     font-family: "Arial", "メイリオ", sans-serif;
 
     /* 配色の設定 */
-    background-color: #10101A;
-    color: #fff;
+    background-color: rgb(16, 16, 26);
+    color: rgb(255, 255, 255);
 }
 
 /* タイトルの設定 */
@@ -58,7 +58,7 @@ footer p{
 /* 印刷用設定 */
 @media print{
     body{
-        background-color: #fff;
-        color: #000
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
     }
 }
