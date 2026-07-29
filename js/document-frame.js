@@ -122,16 +122,20 @@ class DocumentFrame{
             event.preventDefault();
 
             // 新しいliを挿入
-            this.insertLine();
+            // 挿入によってDOMが変化した後にgetTargetElement()を呼び直すと
+            // (特にキャレットが行末にある場合のselectionの解決結果の揺れにより)
+            // 挿入したはずの新しい行を正しく特定できないことがあるため、
+            // insertLine()が返す新しい行の参照をそのまま使う
+            let newLine = this.insertLine();
+            if(newLine == null){
+                return;
+            }
 
-            let newLine = this.getTargetElement().nextElementSibling;
-            // offsetの指定がこれで良いかは再検討の余地がある
-            let offset = newLine.innerText.length;
+            // 新しい行は必ず空(<br>のみ)なのでキャレットは常にその先頭に置く
+            let range = this.frame.contentWindow.document.createRange();
+            range.setStart(newLine, 0);
+            range.setEnd(newLine, 0);
 
-            let range = document.createRange();
-            range.setStart(newLine, offset);
-            range.setEnd(newLine, offset);
-            
             let selection = this.frame.contentWindow.document.getSelection();
             selection.removeAllRanges();
             selection.addRange(range);
@@ -305,6 +309,10 @@ class DocumentFrame{
         this.frame.contentWindow.document.querySelector("main").appendChild(newTopic);
     }
 
+    /**
+     * 新たな行を挿入する
+     * @returns {HTMLLIElement|null} 挿入した新しい行。挿入できなければnull
+     */
     insertLine(){
         // 現在のキャレット位置のテキストを含む要素を特定
         let previousElement = this.getTargetElement();
@@ -320,13 +328,16 @@ class DocumentFrame{
             newList.className = "list_level1";
             newList.appendChild(newLine);
             previousElement.parentElement.insertBefore(newList, previousElement.nextElementSibling);
-            return;
+            return newLine;
         }
 
         // liの後ならliをそのまま挿入
         if(previousElement.tagName.toLowerCase() == "li"){
             previousElement.parentElement.insertBefore(newLine, previousElement.nextElementSibling);
+            return newLine;
         }
+
+        return null;
     }
 
     /**
@@ -444,10 +455,40 @@ class DocumentFrame{
 
     moveUpLine(){
         // クリックした要素を上へ移動
+        let mainElement = this.frame.contentWindow.document.querySelector("main");
+
+        let handleClick = (event) => {
+            let targetElement = event.target.closest("li");
+            if(targetElement === null){
+                return;
+            }
+            let previousLine = targetElement.previousElementSibling;
+            if(previousLine === null){
+                return;
+            }
+            targetElement.parentNode.insertBefore(targetElement, previousLine);
+        };
+
+        mainElement.addEventListener("click", handleClick, {once: true});
     }
 
     moveDownLine(){
         // クリックした要素を下へ移動
+        let mainElement = this.frame.contentWindow.document.querySelector("main");
+
+        let handleClick = (event) => {
+            let targetElement = event.target.closest("li");
+            if(targetElement === null){
+                return;
+            }
+            let nextLine = targetElement.nextElementSibling;
+            if(nextLine === null){
+                return;
+            }
+            targetElement.parentNode.insertBefore(nextLine, targetElement);
+        };
+
+        mainElement.addEventListener("click", handleClick, {once: true});
     }
 }
 

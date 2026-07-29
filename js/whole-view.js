@@ -1,4 +1,4 @@
-import {FilerView, EditorView, ArrangerView} from "./side-view.js";
+import {FilerView, EditorView, ArrangerView, ChatterView} from "./side-view.js";
 
 class WholeView{
     constructor(docFrame){
@@ -13,7 +13,8 @@ class WholeView{
         this.sideWindow = new Map([
             ["filer", new FilerView(docFrame)],
             ["editor", new EditorView(docFrame)],
-            ["arranger", new ArrangerView(docFrame)]
+            ["arranger", new ArrangerView(docFrame)],
+            ["chatter", new ChatterView(docFrame)]
         ]);
 
         // モード定義
@@ -39,6 +40,12 @@ class WholeView{
             this.changeMode("arranger");
         });
 
+        // チャット操作モード
+        this.chatButton = document.getElementById("chat_button");
+        this.chatButton.addEventListener("click", () => {
+            this.changeMode("chatter");
+        });
+
         // ダイアログウィンドウ定義
         this.fileCreateDialog = document.getElementById("file_create_dialog");
         this.fileTitle = document.getElementById("file_title");
@@ -62,7 +69,8 @@ class WholeView{
         ["default", "プレビュー"],
         ["filer", "ファイル管理"],
         ["editor", "編集"],
-        ["arranger", "整理"]
+        ["arranger", "整理"],
+        ["chatter", "チャット操作"]
     ]);
     
     /**

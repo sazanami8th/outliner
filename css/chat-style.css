@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+body{
+    margin: 50px;
+    font-size: 100%;
+    font-family: "Arial", "メイリオ", sans-serif;
+    
+    /* 配色の設定 */
+    background-color: rgb(51, 51, 75);
+    color: rgb(255, 255, 255);
+}

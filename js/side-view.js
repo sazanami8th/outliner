@@ -143,4 +143,22 @@ class ArrangerView extends SideView{
     }
 }
 
-export {SideView, FilerView, EditorView, ArrangerView};
+class ChatterView extends SideView{
+    constructor(docFrame){
+        super("chatter", docFrame);
+
+        // チャットを開く
+        this.ChatOpenButton = document.getElementById("chat_open_button");
+        this.ChatOpenButton.addEventListener("click", () => {
+            document.getElementById("chat_window").style.display = "block";
+        });
+
+        // チャットを閉じる
+        this.ChatCloseButton = document.getElementById("chat_close_button");
+        this.ChatCloseButton.addEventListener("click", () => {
+            document.getElementById("chat_window").style.display = "none";
+        });
+    }
+}
+
+export {SideView, FilerView, EditorView, ArrangerView, ChatterView};
